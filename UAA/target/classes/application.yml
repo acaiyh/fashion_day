@@ -8,7 +8,7 @@ server:
   use-forward-headers: true
 spring:
   application:
-    name: UAA
+    name: UAA-CENTER
   main:
     allow-bean-definition-overriding: true
   http:
@@ -31,6 +31,14 @@ spring:
     throw-exception-if-no-handler-found: true
   resources:
     add-mappings: false
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
 
 mybatis:
   type-aliases-package: com.fashion.uaa.dao

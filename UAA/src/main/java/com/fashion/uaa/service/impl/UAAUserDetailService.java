@@ -1,4 +1,4 @@
-package com.fashion.uaa.service;
+package com.fashion.uaa.service.impl;
 
 import com.fashion.uaa.dao.UserDao;
 import com.fashion.uaa.entity.PermissionDO;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Service
-public class FashionUserDetailService implements UserDetailsService {
+public class UAAUserDetailService implements UserDetailsService {
 
     @Resource
     UserDao userDao;

@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: DISCOVER_CENTER
+server:
+  port: 8000
+
+eureka:
+  server:
+    serviceUrl:
+      defaultZone: http://localhost:${server.port}/eureka/
+    enable-self-preservation: false #关闭自我保护，客户端心跳监测15分钟内错误达到80%服务会保护，导致别人以为服务还是好的
+    eviction-interval-timer-in-ms: 10000 #清理间隔5秒将客户端剔除的服务，从服务列表中删除（毫秒，默认 60*1000）
+    shouldUseReadOnlyResponseCache: true #eureka是CAP理论基于AP策略，为了保护强一致性关闭次切换CP,默认不关闭 false关闭
+  instance:
+    hostname: ${spring.cloud.client.ip-address}
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+  instance-info-replication-interval-seconds: 10 #复制实例变化信息到eureka服务器所需要的时间间隔
+  client:
+    register-with-eureka: false #false: 不作为客户端注册到注册中心
+    fetch-registry: false # true 是，可以启动，报异常：Cannot execute request on any know server

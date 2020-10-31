@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  tomcat:
+    remote-ip-header: x-forwarded-for #使用代理，是否带上真是IP
+    protocol-header: x-forwarded-proto
+    use-forward-headers: true #是否跳转带上header
+  servlet:
+    context-path: /fashion
+spring:
+  application:
+    name: FASHION-CENTER
+  main:
+    allow-bean-definition-overriding: true #表示后面发现的bean会覆盖之前相同的名称的bean
+  http:
+    encoding:
+      enabled: true #启用http编码支持
+      charset: UTF-8
+      force: true #是否强制对请求和相应字符集进行编码
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8000/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${spring.application.instance_id:${server.port}}
+
+logging:
+  level:
+    root: debug
+    org:
+      springframework:
+        web: info #org.springframework.web 包下的日志debug输出
+
+#监控端点配置,自省和监控功能。通过 Actuator,可以使用数据化的指标去度量应用的运行情况
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - refresh,health,info,env

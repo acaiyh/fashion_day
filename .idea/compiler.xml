@@ -6,12 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="DISCOVER_CENTER" />
+        <module name="FASHION_CENTER" />
+        <module name="GETWAY_CENTER" />
         <module name="UAA" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="DISCOVER_CENTER" options="-parameters" />
+      <module name="FASHION_CENTER" options="-parameters" />
+      <module name="GETWAY_CENTER" options="-parameters" />
       <module name="UAA" options="-parameters" />
     </option>
   </component>
